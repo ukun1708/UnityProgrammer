@@ -10,7 +10,7 @@ public class GameConfig
 	public int numUnitsToSpawn;
 	public int unitSpawnDelay;
 	public float unitSpawnMinRadius;
-	public int unitSpawnMaxRadius;
+	public float unitSpawnMaxRadius;
 	public int unitSpawnMinSpeed;
 	public int unitSpawnMaxSpeed;
 	public float unitDestroyRadius;
