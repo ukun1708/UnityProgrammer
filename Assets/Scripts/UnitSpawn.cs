@@ -64,48 +64,48 @@ public class UnitSpawn : MonoBehaviour
                 GameController.Singleton.blueUnitRadCount += unit.radius; // добавляем радиус экземпляра в радиус всех синих объектов
             }
 
-            Vector3 pos = Vector3.zero; // 
-            bool key = false; 
+            Vector3 pos = Vector3.zero; // в pos задаем нулевое значение позиции
+            bool key = false; // в key задаем булевое значение false
             int iterCount = 0; // Проверка на бесконечный цикл
 
-            while (key == false)
+            while (key == false) // если key false
             {
-                iterCount++;
+                iterCount++; // с каждым циклом добавляем плюс 1;
 
-                pos = new Vector3(Random.Range((float)randXmin, (float)randXmax), 0.5f, Random.Range((float)randZmin, (float)randZmax));
+                pos = new Vector3(Random.Range((float)randXmin, (float)randXmax), 0.5f, Random.Range((float)randZmin, (float)randZmax)); // задаем случайную позицию для pos
 
-                for (int j = 0; j < GameController.units.Count; j++)
+                for (int j = 0; j < GameController.units.Count; j++) // измерение расстояний между юнитами
                 {
-                    float dist = Vector3.Distance(pos, GameController.units[j].transform.position) - unit.radius - GameController.units[j].radius;
+                    float dist = Vector3.Distance(pos, GameController.units[j].transform.position) - unit.radius - GameController.units[j].radius; // дистанция между pos и позиций юнитов с учетом радиусов
 
-                    if (dist > 0)
+                    if (dist > 0) // если дистанция больше 0
                     {
                         key = true;
                     }
                     else
                     {
                         key = false;
-                        break;
+                        break; // останавливаем цикл
                     }
                 }
 
-                if (iterCount > 1000)
+                if (iterCount > 1000) // проверяем свободные места
                 {
-                    break;
+                    break; // останавливаем цикл
                 }
             }
 
             if (key == false)
             {
-                Debug.LogError("Не найдено свободного места для юнита");
-                GameController.units.Remove(unit);
-                Destroy(unit.gameObject);
+                Debug.LogError("Не найдено свободного места для юнита"); // Выводим ошибку на консоль
+                GameController.units.Remove(unit); // удаляем модель из коллекции
+                Destroy(unit.gameObject); // уничтожаем объект
 
-                break;
+                break; // останавливаем цикл
             }
 
-            unitGameObj.transform.position = pos;
-            yield return new WaitForSeconds(spawningDelay);
+            unitGameObj.transform.position = pos; // позиция экземпляра объекта из префаба равен pos
+            yield return new WaitForSeconds(spawningDelay); // задержка спавна юнитов
         }
 
         GameController.Singleton.start = true;

@@ -16,8 +16,7 @@ public class WinUnits : MonoBehaviour
         popUpgb.SetActive(false);
         backgroundPop.SetActive(false);
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (GameController.Singleton.start == true)

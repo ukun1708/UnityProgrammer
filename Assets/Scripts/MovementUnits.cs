@@ -9,27 +9,33 @@ public class MovementUnits : MonoBehaviour
 
     }
 
-    public void Moveit(int countUnits)  // отскакивание юнитов при соударении о границы игровой зоны
+    /// <summary>
+    /// отскакивание юнитов при соударении о границы игровой зоны
+    /// </summary>
+    public void Moveit(int countUnits)  
     {
-        Reflector();
-        RemoveItems();
+        Reflector(); // Проверка соударений между объектами
+        RemoveItems(); //Если радиус юнита станет меньше "unitDestroyRadius", юнит уничтожается
 
-        foreach (Unit unit in GameController.units)
+        foreach (Unit unit in GameController.units) // Проверка юнитов
         {
-            if (unit.transform.position.x > GameConfig.Singleton.gameAreaHeight || unit.transform.position.x < -GameConfig.Singleton.gameAreaHeight)
+            if (unit.transform.position.x > GameConfig.Singleton.gameAreaHeight || unit.transform.position.x < -GameConfig.Singleton.gameAreaHeight) // Если позиция юнитов по x больше gameAreaHeight или меньше -gameAreaHeight
             {
-                unit.angle += 180f;
+                unit.angle += 180f; // добавляем плюс 180 направленю движений юнитов
             }
 
-            if (unit.transform.position.z > GameConfig.Singleton.gameAreaWidth || unit.transform.position.z < -GameConfig.Singleton.gameAreaWidth)
+            if (unit.transform.position.z > GameConfig.Singleton.gameAreaWidth || unit.transform.position.z < -GameConfig.Singleton.gameAreaWidth) // Если позиция юнитов по z больше gameAreaHeight или меньше -gameAreaHeight
             {
-                unit.angle += 180f;
+                unit.angle += 180f; // добавляем плюс 180 направленю движений юнитов
             }
 
             unit.transform.position += new Vector3(Mathf.Cos(unit.angle) * unit.speed * 0.01f, 0f, Mathf.Sin(unit.angle) * unit.speed * 0.01f);
         }
     }
 
+    /// <summary>
+    /// Проверка соударений между объектами
+    /// </summary>
     public void Reflector()
     {
 
@@ -70,7 +76,10 @@ public class MovementUnits : MonoBehaviour
         }
     }
 
-    private void RemoveItems() // Если радиус юнита станет меньше "unitDestroyRadius", юнит уничтожается
+    /// <summary>
+    /// Если радиус юнита станет меньше "unitDestroyRadius", юнит уничтожается
+    /// </summary>
+    private void RemoveItems()
     {
         foreach (Unit unit in GameController.units)
         {

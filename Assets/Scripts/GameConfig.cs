@@ -17,9 +17,11 @@ public class GameConfig
 
 	public static GameConfig Singleton;
 
-    //Сериализация GameConfig.json в объект
-    
-    public static GameConfig StartSer()
+	/// <summary>
+	/// Сериализация GameConfig.json в объект
+	/// </summary>
+
+	public static GameConfig StartSer()
 	{
 		string path = Application.streamingAssetsPath + "/GameConfig.json";
 

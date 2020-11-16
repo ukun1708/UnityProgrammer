@@ -15,7 +15,7 @@ public class Bar : MonoBehaviour
 
     private void Update()
     {
-        var pros = GameController.Singleton.redUnitRadCount / (GameController.Singleton.redUnitRadCount + GameController.Singleton.blueUnitRadCount);
+        var pros = GameController.Singleton.redUnitRadCount / (GameController.Singleton.redUnitRadCount + GameController.Singleton.blueUnitRadCount); // процентное соотношение радиусов юнитов
         
         slider.value = Mathf.Lerp(slider.value, pros, Time.deltaTime);
     }

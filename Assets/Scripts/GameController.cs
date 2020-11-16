@@ -25,7 +25,6 @@ public class GameController : MonoBehaviour
 
     public static GameController Singleton;
 
-    [System.Obsolete]
     void Start()
     {
         Singleton = this;

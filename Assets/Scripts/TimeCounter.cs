@@ -13,14 +13,14 @@ public class TimeCounter : MonoBehaviour
 
     public int speedTime;
 
-    // Таймер симуляции
-
     void Start()
     {
         
     }
 
-   
+    /// <summary>
+    /// Таймер симуляции
+    /// </summary>
     void Update()
     {
         if (GameController.Singleton.start == true)

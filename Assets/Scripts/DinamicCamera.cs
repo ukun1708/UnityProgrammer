@@ -9,7 +9,9 @@ public class DinamicCamera : MonoBehaviour
         
     }
 
-    // Динамическая позиционирование камеры
+    /// <summary>
+    /// Динамическая позиционирование камеры
+    /// </summary>
     public void ScaleCamera(int height)
     {
         float scaleModificator = 1.5f;

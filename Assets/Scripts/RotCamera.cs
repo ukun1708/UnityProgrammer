@@ -17,8 +17,10 @@ public class RotCamera : MonoBehaviour
         targetRot = transform.rotation;
     }
 
-    // Вращение камеры
-
+    
+    /// <summary>
+    /// Вращение камеры вокруг центар области битвы
+    /// </summary>
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
