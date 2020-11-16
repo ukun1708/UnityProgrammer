@@ -20,7 +20,6 @@ public class SpeedSimulation : MonoBehaviour
 
     public void SliderOnValueChanged()
     {
-
         GameController.Singleton.steps = (int)slider.value;
     }
 }
