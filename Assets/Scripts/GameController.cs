@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+
         if (start == true)
         {
             for (int i = 0; i < steps; i++)
