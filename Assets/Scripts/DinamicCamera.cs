@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class myCamera : MonoBehaviour
+public class DinamicCamera : MonoBehaviour
 {
     void Start()
     {
         
     }
 
-    
+    // Динамическая позиционирование камеры
     public void ScaleCamera(int height)
     {
         float scaleModificator = 1.5f;

@@ -16,7 +16,7 @@ public class SpriteCreator : MonoBehaviour
         
     }
 
-    public void CreateSprite(int height, int widght)
+    public void CreateSprite(int height, int widght)  // Создание области симуляции битвы
     {
         spritePos = new Vector3(0f, 0f, 0f);
 

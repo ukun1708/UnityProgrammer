@@ -15,6 +15,8 @@ public class GameConfig
 	public int unitSpawnMaxSpeed;
 	public float unitDestroyRadius;
 
+	public static GameConfig Singleton;
+
 	//Сериализация GameConfig.json в объект
 	public static GameConfig StartSer()
     {
@@ -22,6 +24,8 @@ public class GameConfig
 		string text = File.ReadAllText(path);
 
 		GameConfig config = JsonUtility.FromJson<GameConfig>(text);
+
+		Singleton = config;
 
 		return config;
     }
