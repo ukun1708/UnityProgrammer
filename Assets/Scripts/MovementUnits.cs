@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MovementUnits : MonoBehaviour
 {
+    private float step = 0.01f;
+
     void Start()
     {
 
@@ -29,7 +31,7 @@ public class MovementUnits : MonoBehaviour
                 unit.angle += 180f; // добавляем плюс 180 направленю движений юнитов
             }
 
-            unit.transform.position += new Vector3(Mathf.Cos(unit.angle) * unit.speed * 0.01f, 0f, Mathf.Sin(unit.angle) * unit.speed * 0.01f);
+            unit.transform.position += new Vector3(Mathf.Cos(unit.angle) * unit.speed * step, 0f, Mathf.Sin(unit.angle) * unit.speed * step);
         }
     }
 
