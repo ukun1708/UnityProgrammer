@@ -21,16 +21,23 @@ public class RotCamera : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            oldPos = Input.mousePosition.x;
+        }
 
         if (Input.GetMouseButton(0))
         {
             float currentPos = Input.mousePosition.x;
 
-            targetRot *= Quaternion.Euler(Vector3.up * -speed * (oldPos - currentPos) * Time.deltaTime); 
+            targetRot *= Quaternion.Euler(Vector3.up * -speed * (oldPos - currentPos) * Time.deltaTime);
+
+            oldPos = Input.mousePosition.x;
         }
 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRot,  Time.deltaTime * speedRot);
 
-        oldPos = Input.mousePosition.x;
+        
+
     }
 }

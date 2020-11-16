@@ -17,17 +17,28 @@ public class GameConfig
 
 	public static GameConfig Singleton;
 
-	//Сериализация GameConfig.json в объект
-	public static GameConfig StartSer()
-    {
-		string path = Application.streamingAssetsPath + "\\GameConfig.json";
-		string text = File.ReadAllText(path);
+    //Сериализация GameConfig.json в объект
+    
+    public static GameConfig StartSer()
+	{
+		string path = Application.streamingAssetsPath + "/GameConfig.json";
+
+		UnityEngine.Networking.UnityWebRequest www = UnityEngine.Networking.UnityWebRequest.Get(path);
+
+		www.SendWebRequest();
+
+        while (!www.isDone)
+        {
+
+        }
+
+		string text = www.downloadHandler.text;
 
 		GameConfig config = JsonUtility.FromJson<GameConfig>(text);
 
-		Singleton = config;
+        Singleton = config;
 
-		return config;
+        return config;
     }
 }
 

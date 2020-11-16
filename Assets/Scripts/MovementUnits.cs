@@ -16,12 +16,12 @@ public class MovementUnits : MonoBehaviour
 
         foreach (Unit unit in GameController.units)
         {
-            if (unit.transform.position.x > 100 || unit.transform.position.x < -100)
+            if (unit.transform.position.x > GameConfig.Singleton.gameAreaHeight || unit.transform.position.x < -GameConfig.Singleton.gameAreaHeight)
             {
                 unit.angle += 180f;
             }
 
-            if (unit.transform.position.z > 100 || unit.transform.position.z < -100)
+            if (unit.transform.position.z > GameConfig.Singleton.gameAreaWidth || unit.transform.position.z < -GameConfig.Singleton.gameAreaWidth)
             {
                 unit.angle += 180f;
             }

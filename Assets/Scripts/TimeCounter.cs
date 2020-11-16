@@ -20,7 +20,7 @@ public class TimeCounter : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         if (GameController.Singleton.start == true)
@@ -31,7 +31,7 @@ public class TimeCounter : MonoBehaviour
 
             textTimer.text = minut.ToString("F0") + ":" + second.ToString("F0");
 
-            PopUpTextTimer.text = minut.ToString("F0") + " минут " + ": " + second.ToString("F0") + " секунд ";
+            PopUpTextTimer.text = minut.ToString("F0") + " мин. " + ": " + second.ToString("F0") + " сек. ";
 
             if (second > 59)
             {
