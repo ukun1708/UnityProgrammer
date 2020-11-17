@@ -21,12 +21,16 @@ public class MovementUnits : MonoBehaviour
 
         foreach (Unit unit in GameController.units) // Проверка юнитов
         {
-            if (unit.transform.position.x > GameConfig.Singleton.gameAreaHeight || unit.transform.position.x < -GameConfig.Singleton.gameAreaHeight) // Если позиция юнитов по x больше gameAreaHeight или меньше -gameAreaHeight
+            var height = GameConfig.Singleton.gameAreaHeight / 2f;
+
+            if (unit.transform.position.x + unit.radius > height || unit.transform.position.x - unit.radius < -height) // Если позиция юнитов по x больше gameAreaHeight или меньше -gameAreaHeight
             {
                 unit.angle += 180f; // добавляем плюс 180 направленю движений юнитов
             }
 
-            if (unit.transform.position.z > GameConfig.Singleton.gameAreaWidth || unit.transform.position.z < -GameConfig.Singleton.gameAreaWidth) // Если позиция юнитов по z больше gameAreaHeight или меньше -gameAreaHeight
+            var width = GameConfig.Singleton.gameAreaWidth / 2f;
+
+            if (unit.transform.position.z + unit.radius > width || unit.transform.position.z - unit.radius < -width) // Если позиция юнитов по z больше gameAreaHeight или меньше -gameAreaHeight
             {
                 unit.angle += 180f; // добавляем плюс 180 направленю движений юнитов
             }

@@ -21,12 +21,12 @@ public class UnitSpawn : MonoBehaviour
 
     public void SpawnUnits(GameConfig config)
     {
-        StartCoroutine(SpawnUnitsCor(-config.gameAreaHeight, config.gameAreaHeight, -config.gameAreaWidth, config.gameAreaWidth,
+        StartCoroutine(SpawnUnitsCor(-config.gameAreaHeight / 2f, config.gameAreaHeight / 2f, -config.gameAreaWidth / 2f, config.gameAreaWidth / 2f,
                                     config.unitSpawnDelay, config.numUnitsToSpawn, config.unitSpawnMinRadius, config.unitSpawnMaxRadius,
                                     config.unitSpawnMinSpeed, config.unitSpawnMaxSpeed));
     }
 
-    public IEnumerator SpawnUnitsCor(int randXmin, int randXmax, int randZmin, int randZmax, int spawningDelay, int countUnits, float unitMinRad, float unitMaxRad, int minSpeed, int maxSpeed)
+    public IEnumerator SpawnUnitsCor(float randXmin, float randXmax, float randZmin, float randZmax, int spawningDelay, int countUnits, float unitMinRad, float unitMaxRad, int minSpeed, int maxSpeed)
     {
         for (int i = 0; i < countUnits; i++) // количество создаваемых юнитов
         {
@@ -72,7 +72,10 @@ public class UnitSpawn : MonoBehaviour
             {
                 iterCount++; // с каждым циклом добавляем плюс 1;
 
-                pos = new Vector3(Random.Range((float)randXmin, (float)randXmax), 0.5f, Random.Range((float)randZmin, (float)randZmax)); // задаем случайную позицию для pos
+                var randomX = Random.Range((float)randXmin + unit.radius, (float)randXmax - unit.radius);
+                var randomZ = Random.Range((float)randZmin + unit.radius, (float)randZmax - unit.radius);
+
+                pos = new Vector3(randomX, 0.5f, randomZ); // задаем случайную позицию для pos
 
                 for (int j = 0; j < GameController.units.Count; j++) // измерение расстояний между юнитами
                 {
@@ -89,17 +92,26 @@ public class UnitSpawn : MonoBehaviour
                     }
                 }
 
-                if (iterCount > 1000) // проверяем свободные места
+                if (iterCount > 1000) // максимальное число циклов
                 {
                     break; // останавливаем цикл
                 }
             }
 
-            if (key == false)
+            if (key == false) // Не найдено свободного места для юнита так как цикл перешел максимальное число итераций
             {
                 Debug.LogError("Не найдено свободного места для юнита"); // Выводим ошибку на консоль
                 GameController.units.Remove(unit); // удаляем модель из коллекции
                 Destroy(unit.gameObject); // уничтожаем объект
+
+                if (unit.color == ColorUniits.Red) // если цвет юнита равен Red
+                {
+                    GameController.Singleton.redUnitRadCount -= unit.radius; // удаляем радиус экземпляра в радиус всех красных объектов
+                }
+                else // иначе
+                {
+                    GameController.Singleton.blueUnitRadCount -= unit.radius; // удаляем радиус экземпляра в радиус всех синих объектов
+                }
 
                 break; // останавливаем цикл
             }

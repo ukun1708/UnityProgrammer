@@ -32,13 +32,14 @@ public class GameController : MonoBehaviour
 
         spriteCreator.CreateSprite(config.gameAreaHeight, config.gameAreaWidth);
 
-        cameraScaler.ScaleCamera(config.gameAreaWidth);
+        
 
         spawnerUnits.SpawnUnits(config);
     }
 
     void Update()
     {
+        cameraScaler.ScaleCamera();
 
         if (start == true)
         {
